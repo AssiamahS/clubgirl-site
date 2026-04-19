@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Club Girl — 24/7 Beat-Matched Radio</title>
+  <meta name="description" content="Club Girl — 24/7 beat-matched Jersey Club, Philly Club, Baltimore Club, and Slowed radio streams." />
+  <link rel="icon" href="assets/profile.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">
+      <img src="assets/logo.png" alt="Club Girl" />
+    </a>
+    <nav>
+      <a href="#streams">Streams</a>
+      <a href="#about">About</a>
+      <a href="https://youtube.com/@clubgirlfm" target="_blank" rel="noopener">YouTube</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-art" style="background-image:url('assets/banner.png')"></div>
+    <div class="hero-copy">
+      <h1>Club Girl</h1>
+      <p class="tagline">24/7 beat-matched club radio. Jersey, Philly, Bmore &amp; more.</p>
+      <a class="cta" href="https://youtube.com/watch?v=zHF6kGXOoRU" target="_blank" rel="noopener">Tune in live →</a>
+      <div class="now-playing" id="nowPlaying" aria-live="polite">
+        <span class="np-dot"></span>
+        <span class="np-label">NOW PLAYING</span>
+        <span class="np-text" id="npText">—</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="streams" class="streams">
+    <h2>Our live streams</h2>
+    <div class="grid">
+      <a class="tile live" href="https://youtube.com/watch?v=zHF6kGXOoRU" target="_blank" rel="noopener">
+        <div class="thumb" data-theme="jersey"><span class="live-dot">LIVE</span></div>
+        <div class="title">Club Girl: Jersey</div>
+        <div class="sub">958 tracks · beat-matched 24/7</div>
+      </a>
+      <div class="tile soon">
+        <div class="thumb" data-theme="philly"></div>
+        <div class="title">Club Girl: Philly</div>
+        <div class="sub">coming soon</div>
+      </div>
+      <div class="tile soon">
+        <div class="thumb" data-theme="bmore"></div>
+        <div class="title">Club Girl: Baltimore</div>
+        <div class="sub">coming soon</div>
+      </div>
+      <div class="tile soon">
+        <div class="thumb" data-theme="slowed"></div>
+        <div class="title">Club Girl: Slowed</div>
+        <div class="sub">coming soon</div>
+      </div>
+      <div class="tile soon">
+        <div class="thumb" data-theme="oldschool"></div>
+        <div class="title">Club Girl: Old School</div>
+        <div class="sub">coming soon</div>
+      </div>
+      <div class="tile soon">
+        <div class="thumb" data-theme="latenight"></div>
+        <div class="title">Club Girl: Late Night</div>
+        <div class="sub">coming soon</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>What is this</h2>
+    <p>
+      Real beat-matched 24/7 radio for club music — no hard cuts, no DJ drops, no ads.
+      Every track is tempo-locked to the next with rubberband pitch-preserving time stretch
+      and an 8-bar crossfade on the downbeat. Volume is normalized to −14 LUFS so your
+      ears don't get blasted between tracks.
+    </p>
+    <p>
+      Jersey is live now. Philly, Baltimore, Slowed, Old School, and Late Night streams
+      drop over the next few weeks.
+    </p>
+  </section>
+
+  <footer>
+    <div class="foot-brand">
+      <img src="assets/logo.png" alt="Club Girl" />
+    </div>
+    <nav class="foot-nav">
+      <a href="#about">About</a>
+      <a href="mailto:sylvesterassiamah105@gmail.com">Contact</a>
+      <a href="https://youtube.com/@clubgirlfm" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://twitch.tv/djsly85" target="_blank" rel="noopener">Twitch</a>
+    </nav>
+    <div class="copy">© 2026 Club Girl. Every track beat-matched, every crossfade on the downbeat.</div>
+  </footer>
+
+  <script>
+    const NP_URL = "http://44.205.58.31:8080/now-playing.json";
+    const el = document.getElementById("npText");
+    async function tick() {
+      try {
+        const r = await fetch(NP_URL, { cache: "no-store" });
+        if (!r.ok) throw new Error(r.status);
+        const d = await r.json();
+        const artist = (d.artist || "").trim();
+        const title  = (d.title  || "").trim();
+        el.textContent = artist ? `${artist} — ${title}` : title;
+      } catch {
+        el.textContent = "—";
+      }
+    }
+    tick();
+    setInterval(tick, 15000);
+  </script>
+</body>
+</html>
