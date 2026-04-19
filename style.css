@@ -32,36 +32,25 @@ a { color: inherit; text-decoration: none; }
 .nav nav a { color: var(--muted); }
 .nav nav a:hover { color: var(--pink-2); }
 
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
 .hero {
-  position: relative;
-  min-height: 58vh;
-  display: grid; place-items: center;
-  overflow: hidden;
-  isolation: isolate;
+  padding: 40px 24px 60px;
+  display: grid; justify-items: center; gap: 28px;
+  max-width: 1400px; margin: 0 auto;
 }
 .hero-art {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-  z-index: -1;
-  filter: saturate(1.1) contrast(1.05);
+  width: 100%; max-width: 1280px;
+  border-radius: 18px;
+  box-shadow: 0 30px 80px rgba(255,63,142,.18), 0 0 0 1px var(--line);
+  display: block;
 }
-.hero::after {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(11,6,18,.15) 0%, rgba(11,6,18,.85) 85%);
-}
-.hero-copy {
-  text-align: center; padding: 120px 24px;
-}
-.hero-copy h1 {
-  font-size: clamp(54px, 9vw, 128px); font-weight: 800; letter-spacing: -.03em;
-  margin: 0 0 8px; line-height: .95;
-  background: linear-gradient(120deg, #fff 0%, var(--pink-2) 60%, var(--pink) 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  text-shadow: 0 0 50px rgba(255,63,142,.35);
-}
+.hero-copy { text-align: center; }
 .tagline {
   font-size: clamp(16px, 1.6vw, 20px);
-  color: var(--pink-2); margin: 0 0 28px;
+  color: var(--pink-2); margin: 0 0 22px;
 }
 .cta {
   display: inline-block; padding: 14px 28px; border-radius: 999px;
