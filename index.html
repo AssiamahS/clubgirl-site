@@ -103,7 +103,7 @@
   <script>
     // VPS pushes now-playing.json to this repo's data branch every 15s.
     // Same-origin https → no mixed-content block, no CORS.
-    const NP_URL = "https://raw.githubusercontent.com/AssiamahS/clubgirl-site/data/now-playing.json";
+    const NP_URL = "https://cdn.jsdelivr.net/gh/AssiamahS/clubgirl-site@data/now-playing.json";
     const el = document.getElementById("npText");
     async function tick() {
       try {
